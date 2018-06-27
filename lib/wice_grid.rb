@@ -285,11 +285,11 @@ module Wice
       #   @status.delete(:f)
       # end
 
-      initial_conditions_active_relation = @klass.where(@status[:conditions])
+      initial_conditions_active_relation = @relation.where(@status[:conditions])
 
       @ar_options[:conditions] =
         @table_column_matrix.conditions.reduce(initial_conditions_active_relation) do |active_relation_accu, cond|
-          conditions_active_relation = @klass.where(cond)
+          conditions_active_relation = @relation.where(cond)
           active_relation_accu.merge(conditions_active_relation)
         end
 
